@@ -42,5 +42,5 @@ function onEscKeyPress(evt) {
     window.removeEventListener('keydown',onEscKeyPress)
     
   }
-  console.log(evt)
+  
 }

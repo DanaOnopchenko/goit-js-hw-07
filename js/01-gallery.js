@@ -20,11 +20,27 @@ const markup = galleryItems.map(({
 `).join('')
 galleryEl.insertAdjacentHTML('beforeend',markup)
 // console.log(markup)
+
+ let instance
 function onOpenModal(evt) { 
-    evt.preventDefault();
+  evt.preventDefault();
+ 
     const urlImg = evt.target.dataset.source;
-    const instance = basicLightbox.create(`
+    instance = basicLightbox.create(`
     <img src="${urlImg}" width="800" height="600">
 `)
-instance.show()
+  instance.show()
+   window.addEventListener('keydown', onEscKeyPress);
+}
+function onEscKeyPress(evt) { 
+  if (evt.code !== 'Escape') {
+    return
+    
+  }
+  else { 
+    instance.close();
+    window.removeEventListener('keydown',onEscKeyPress)
+    
+  }
+  console.log(evt)
 }
